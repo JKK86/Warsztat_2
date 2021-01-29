@@ -1,7 +1,7 @@
 users_table_query = """
 CREATE TABLE users(
 id serial,
-username varchar(255),
+username varchar(255) UNIQUE,
 hashed_password varchar(80),
 PRIMARY KEY (id)
 );"""

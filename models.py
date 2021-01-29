@@ -77,7 +77,7 @@ class User:
             loaded_user._hashed_password = hashed_password
             users.append(loaded_user)
             conn.close()
-            return users
+        return users
 
     @classmethod
     def load_user_by_username(cls, username):
