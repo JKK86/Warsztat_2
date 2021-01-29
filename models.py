@@ -112,3 +112,15 @@ class User:
             return loaded_user
         else:
             return None
+
+
+
+    def delete(self):
+        if self.id != None:
+            sql = f"DELETE FROM users WHERE id={self.id}"
+            conn = connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            self._id = None
+            return True
+
