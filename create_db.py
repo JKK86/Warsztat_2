@@ -1,6 +1,6 @@
 from connection import connect
 from create_query_sql import creation_query_list
-
+import psycopg2.errors
 
 def create_db(db_name):
     data = {
@@ -17,7 +17,7 @@ def create_db(db_name):
 
     try:
         cursor.execute(create_db_query)
-    except:
+    except psycopg2.errors.DuplicateDatabase:
         print(f"Baza danych {db_name} już istnieje")
 
     conn.close()
@@ -30,9 +30,9 @@ def create_table(query_list=None):
     for query in query_list:
         try:
             cursor.execute(query)
-        except:
+        except psycopg2.errors.DuplicateTable:
             table = query.split('\n')[1][:-1]
-            print(f"Nie udało się wykonać zapytania {table}")
+            print(f"Tabela {table} już istnieje")
     conn.close()
 
 if __name__=='__main__':
